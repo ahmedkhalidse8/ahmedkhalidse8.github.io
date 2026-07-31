@@ -1,317 +1,650 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ahmed Khalid — Data Analyst specializing in SQL, Python, Power BI, Excel, dashboards, KPI reporting, and business analytics.">
 <title>Ahmed Khalid — Data Analyst</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --navy:#0b0f17;
-    --panel:#111826;
-    --panel-2:#161f30;
-    --line:#26314533;
-    --line-strong:#2b3750;
-    --text:#e7ecf4;
-    --muted:#8b96ac;
-    --amber:#f5a524;
-    --amber-dim:#f5a52422;
-    --teal:#2ee6c5;
-    --teal-dim:#2ee6c522;
-    --red:#ff6b6b;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:
-      radial-gradient(1200px 600px at 85% -10%, #1a2438 0%, transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, #12213022 0%, transparent 55%),
-      var(--navy);
-    color:var(--text);
-    font-family:'Manrope',sans-serif;
-    -webkit-font-smoothing:antialiased;
-  }
-  .mono{font-family:'IBM Plex Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
+:root{
+  --navy:#0b0f17;
+  --panel:#111826;
+  --panel-2:#161f30;
+  --line:#26314533;
+  --line-strong:#2b3750;
+  --text:#e7ecf4;
+  --muted:#8b96ac;
+  --amber:#f5a524;
+  --amber-dim:#f5a52422;
+  --teal:#2ee6c5;
+  --teal-dim:#2ee6c522;
+  --red:#ff6b6b;
+}
 
-  /* ===== Formula bar nav ===== */
-  .formula-bar{
-    position:sticky;top:0;z-index:50;
-    background:#0d131ee6;
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line-strong);
-  }
-  .formula-inner{
-    max-width:1080px;margin:0 auto;
-    display:flex;align-items:center;gap:14px;
-    padding:12px 24px;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;
-    flex-wrap:wrap;
-  }
-  .fx-tag{
-    color:var(--muted);
-    border:1px solid var(--line-strong);
-    border-radius:4px;
-    width:26px;height:22px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:11px;
-    flex-shrink:0;
-  }
-  .formula-input{
-    color:var(--teal);
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    flex:1;
-    min-width:180px;
-  }
-  .formula-input .k{color:var(--amber);}
-  .formula-input .s{color:#9fb3d1;}
-  .cellnav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;}
-  .cellnav a{
-    padding:4px 9px;
-    border:1px solid var(--line-strong);
-    border-radius:4px;
-    color:var(--muted);
-    font-size:12px;
-    transition:.15s;
-  }
-  .cellnav a:hover{border-color:var(--teal);color:var(--teal);}
+*{
+  box-sizing:border-box;
+}
 
-  section{max-width:1080px;margin:0 auto;padding:96px 24px;}
-  .eyebrow{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:12px;color:var(--amber);
-    letter-spacing:.06em;
-    display:flex;align-items:center;gap:10px;
-    margin-bottom:18px;
-  }
-  .eyebrow .cellref{
-    background:var(--amber-dim);
-    border:1px solid #f5a52455;
-    border-radius:4px;
-    padding:2px 7px;
-    color:var(--amber);
-  }
+html{
+  scroll-behavior:smooth;
+}
 
-  /* ===== Hero ===== */
-  .hero{padding-top:72px;padding-bottom:56px;}
-  .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
-  .status-pill{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11.5px;color:var(--teal);
-    border:1px solid #2ee6c555;background:var(--teal-dim);
-    padding:5px 10px;border-radius:20px;
-    display:inline-flex;align-items:center;gap:7px;
-  }
-  .status-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal);}
-  h1.name{
-    font-size:clamp(40px,7vw,68px);
-    line-height:1.02;
-    font-weight:800;
-    margin:22px 0 6px;
-    letter-spacing:-0.02em;
-  }
-  .role-line{
-    font-size:clamp(18px,2.4vw,22px);
-    color:var(--muted);
-    font-weight:600;
-    margin-bottom:22px;
-  }
-  .role-line .blink{color:var(--amber);}
-  .pitch{
-    max-width:640px;
-    font-size:17px;
-    line-height:1.6;
-    color:#c3cbdb;
-    margin-bottom:34px;
-  }
-  .pitch b{color:var(--text);font-weight:700;}
-  .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
-  .btn{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13.5px;
-    padding:13px 20px;
-    border-radius:6px;
-    display:inline-flex;align-items:center;gap:8px;
-    transition:.15s;
-    border:1px solid transparent;
-  }
-  .btn-primary{background:var(--amber);color:#151016;font-weight:600;}
-  .btn-primary:hover{background:#ffb542;transform:translateY(-1px);}
-  .btn-ghost{border:1px solid var(--line-strong);color:var(--text);}
-  .btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, #1a2438 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, #12213022 0%, transparent 55%),
+    var(--navy);
+  color:var(--text);
+  font-family:"Manrope",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
 
-  /* KPI grid */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.mono{
+  font-family:"IBM Plex Mono",monospace;
+}
+
+/* FORMULA BAR */
+
+.formula-bar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:#0d131ee6;
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-strong);
+}
+
+.formula-inner{
+  max-width:1080px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px 24px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:13px;
+  flex-wrap:wrap;
+}
+
+.fx-tag{
+  color:var(--muted);
+  border:1px solid var(--line-strong);
+  border-radius:4px;
+  width:26px;
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  flex-shrink:0;
+}
+
+.formula-input{
+  color:var(--teal);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  flex:1;
+  min-width:180px;
+}
+
+.formula-input .k{
+  color:var(--amber);
+}
+
+.formula-input .s{
+  color:#9fb3d1;
+}
+
+.cellnav{
+  display:flex;
+  gap:4px;
+  margin-left:auto;
+  flex-wrap:wrap;
+}
+
+.cellnav a{
+  padding:4px 9px;
+  border:1px solid var(--line-strong);
+  border-radius:4px;
+  color:var(--muted);
+  font-size:12px;
+  transition:.15s;
+}
+
+.cellnav a:hover{
+  border-color:var(--teal);
+  color:var(--teal);
+}
+
+/* GENERAL */
+
+section{
+  max-width:1080px;
+  margin:0 auto;
+  padding:96px 24px;
+}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--amber);
+  letter-spacing:.06em;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.cellref{
+  background:var(--amber-dim);
+  border:1px solid #f5a52455;
+  border-radius:4px;
+  padding:2px 7px;
+  color:var(--amber);
+}
+
+.sec-title{
+  font-size:clamp(30px,5vw,48px);
+  line-height:1.1;
+  margin:0 0 36px;
+  font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+  padding-top:72px;
+  padding-bottom:56px;
+}
+
+.status-pill{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11.5px;
+  color:var(--teal);
+  border:1px solid #2ee6c555;
+  background:var(--teal-dim);
+  padding:5px 10px;
+  border-radius:20px;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+
+.dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--teal);
+  box-shadow:0 0 8px var(--teal);
+}
+
+.name{
+  font-size:clamp(44px,7vw,70px);
+  line-height:1.02;
+  font-weight:800;
+  margin:22px 0 8px;
+}
+
+.role-line{
+  font-size:clamp(18px,3vw,25px);
+  color:var(--teal);
+}
+
+.blink{
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{
+    opacity:0;
+  }
+}
+
+.pitch{
+  max-width:800px;
+  color:#c3cbdb;
+  font-size:18px;
+  line-height:1.75;
+  margin:30px 0;
+}
+
+.hero-ctas{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  border-radius:6px;
+  font-weight:700;
+  font-size:14px;
+  transition:.18s;
+}
+
+.btn-primary{
+  background:var(--amber);
+  color:#17120a;
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.btn-ghost{
+  border:1px solid var(--line-strong);
+  color:#cbd4e4;
+}
+
+.btn-ghost:hover{
+  border-color:var(--teal);
+  color:var(--teal);
+}
+
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:54px;
+}
+
+.kpi{
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  border-radius:10px;
+  padding:21px;
+}
+
+.kpi-flag{
+  color:var(--amber);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  margin-bottom:8px;
+}
+
+.kpi-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:8px;
+}
+
+.kpi-value{
+  font-size:28px;
+  font-weight:800;
+}
+
+.unit{
+  font-size:15px;
+  color:var(--teal);
+  margin-left:2px;
+}
+
+.kpi-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:7px;
+  line-height:1.4;
+}
+
+/* PROFILE */
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:48px;
+}
+
+.profile-text p{
+  color:#c3cbdb;
+  line-height:1.8;
+  font-size:15.5px;
+}
+
+.info-card{
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  border-radius:10px;
+  padding:22px 24px;
+  height:fit-content;
+}
+
+.info-row{
+  padding:13px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.info-row:last-child{
+  border-bottom:none;
+}
+
+.info-k{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:10.5px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  margin-bottom:5px;
+}
+
+.info-v{
+  font-size:14px;
+  font-weight:600;
+}
+
+/* SKILLS */
+
+.query-comment{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:22px;
+  padding:14px 16px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-left:2px solid var(--amber);
+  border-radius:6px;
+}
+
+.query-comment .kw{
+  color:var(--teal);
+}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.skill-card{
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  border-radius:10px;
+  padding:22px;
+}
+
+.skill-title{
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:13px;
+}
+
+.tag-row{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.tag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;
+  background:var(--panel-2);
+  border:1px solid var(--line-strong);
+  padding:5px 8px;
+  border-radius:4px;
+  color:#b8c2d8;
+}
+
+/* PROJECTS */
+
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.proj-card{
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  border-radius:10px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:.18s;
+}
+
+.proj-card:hover{
+  border-color:var(--teal);
+  transform:translateY(-2px);
+}
+
+.proj-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+}
+
+.proj-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+.proj-link{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--muted);
+  flex-shrink:0;
+}
+
+.proj-link:hover{
+  color:var(--teal);
+}
+
+.proj-flag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--amber);
+}
+
+.proj-desc{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+  flex:1;
+}
+
+/* EXPERIENCE */
+
+.timeline{
+  border-left:1px solid var(--line-strong);
+  padding-left:32px;
+}
+
+.tl-item{
+  position:relative;
+  padding-bottom:46px;
+}
+
+.tl-item:last-child{
+  padding-bottom:0;
+}
+
+.tl-dot{
+  position:absolute;
+  left:-38px;
+  top:4px;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--navy);
+  border:2px solid var(--amber);
+}
+
+.tl-date{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--amber);
+  margin-bottom:8px;
+}
+
+.tl-role{
+  font-size:19px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.tl-org{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:14px;
+}
+
+.tl-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.tl-list li{
+  color:#c3cbdb;
+  font-size:14.5px;
+  line-height:1.55;
+  padding-left:18px;
+  position:relative;
+}
+
+.tl-list li::before{
+  content:"▸";
+  position:absolute;
+  left:0;
+  color:var(--teal);
+}
+
+/* CONTACT */
+
+.contact-panel{
+  background:linear-gradient(135deg,var(--panel),var(--panel-2));
+  border:1px solid var(--line-strong);
+  border-radius:14px;
+  padding:56px 30px;
+  text-align:center;
+}
+
+.contact-formula{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:13px;
+  color:var(--teal);
+  margin-bottom:20px;
+}
+
+.contact-title{
+  font-size:clamp(30px,4vw,44px);
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.contact-sub{
+  color:var(--muted);
+  margin-bottom:30px;
+}
+
+.contact-btns{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+footer{
+  text-align:center;
+  padding:35px 20px 48px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
   .kpi-grid{
-    margin-top:56px;
-    display:grid;grid-template-columns:repeat(4,1fr);
-    border:1px solid var(--line-strong);
-    border-radius:10px;overflow:hidden;
-    background:var(--panel);
-  }
-  .kpi{
-    padding:22px 20px;
-    border-right:1px solid var(--line-strong);
-    position:relative;
-  }
-  .kpi:last-child{border-right:none;}
-  .kpi-label{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:11px;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.05em;
-    margin-bottom:10px;
-  }
-  .kpi-value{
-    font-size:28px;font-weight:800;
-    display:flex;align-items:baseline;gap:3px;
-  }
-  .kpi-value .unit{font-size:15px;color:var(--amber);font-weight:700;}
-  .kpi-sub{font-size:12px;color:var(--muted);margin-top:6px;}
-  .kpi-flag{position:absolute;top:16px;right:16px;font-size:11px;color:var(--red);}
-
-  @media(max-width:760px){
-    .kpi-grid{grid-template-columns:repeat(2,1fr);}
-    .kpi:nth-child(2){border-right:none;}
-    .kpi:nth-child(1),.kpi:nth-child(2){border-bottom:1px solid var(--line-strong);}
+    grid-template-columns:1fr 1fr;
   }
 
-  /* ===== Section headers ===== */
-  h2.sec-title{
-    font-size:clamp(26px,4vw,36px);
-    font-weight:800;
-    letter-spacing:-0.01em;
-    margin:0 0 14px;
-  }
-  .sec-desc{color:var(--muted);font-size:15px;max-width:560px;margin-bottom:44px;line-height:1.6;}
-
-  /* ===== Profile section ===== */
-  .profile-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:48px;}
-  .profile-text p{color:#c3cbdb;line-height:1.75;font-size:15.5px;margin-bottom:18px;}
-  .info-card{
-    background:var(--panel);border:1px solid var(--line-strong);
-    border-radius:10px;padding:22px 24px;height:fit-content;
-  }
-  .info-row{padding:13px 0;border-bottom:1px solid var(--line);}
-  .info-row:last-child{border-bottom:none;}
-  .info-k{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
-  .info-v{font-size:14.5px;font-weight:600;}
-  @media(max-width:760px){.profile-grid{grid-template-columns:1fr;}}
-
-  /* ===== Skills ===== */
-  .query-comment{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;color:var(--muted);
-    margin-bottom:22px;
-    padding:14px 16px;
-    background:var(--panel);border:1px solid var(--line);
-    border-radius:6px;
-    border-left:2px solid var(--amber);
-  }
-  .query-comment .kw{color:var(--teal);}
-  table.skills{width:100%;border-collapse:collapse;}
-  table.skills th{
-    text-align:left;font-family:'IBM Plex Mono',monospace;
-    font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;
-    padding:0 16px 12px;border-bottom:1px solid var(--line-strong);
-  }
-  table.skills td{padding:16px;border-bottom:1px solid var(--line);vertical-align:middle;}
-  table.skills tr:last-child td{border-bottom:none;}
-  .tool-name{font-weight:700;font-size:15px;}
-  .bar-track{width:100%;max-width:220px;height:6px;background:var(--panel-2);border-radius:3px;overflow:hidden;}
-  .bar-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:3px;}
-  .tag-row{display:flex;gap:6px;flex-wrap:wrap;}
-  .tag{
-    font-family:'IBM Plex Mono',monospace;font-size:11px;
-    background:var(--panel-2);border:1px solid var(--line-strong);
-    padding:4px 8px;border-radius:4px;color:#b8c2d8;
-  }
-  @media(max-width:700px){
-    table.skills, table.skills thead, table.skills tbody, table.skills th, table.skills td, table.skills tr{display:block;}
-    table.skills thead{display:none;}
-    table.skills tr{padding:16px 0;border-bottom:1px solid var(--line);}
-    table.skills td{padding:4px 0;border:none;}
+  .profile-grid,
+  .skills-grid,
+  .project-grid{
+    grid-template-columns:1fr;
   }
 
-  /* ===== Projects ===== */
-  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  .proj-card{
-    background:var(--panel);border:1px solid var(--line-strong);
-    border-radius:10px;padding:24px;
-    display:flex;flex-direction:column;gap:12px;
-    transition:.18s;
-  }
-  .proj-card:hover{border-color:var(--teal);transform:translateY(-2px);}
-  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-  .proj-name{font-size:17px;font-weight:700;}
-  .proj-link{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px;flex-shrink:0;}
-  .proj-card:hover .proj-link{color:var(--teal);}
-  .proj-flag{
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);
-    display:flex;align-items:center;gap:6px;
-  }
-  .proj-desc{color:var(--muted);font-size:14px;line-height:1.6;flex:1;}
-  .proj-tags{display:flex;gap:6px;flex-wrap:wrap;}
-  @media(max-width:760px){.project-grid{grid-template-columns:1fr;}}
+}
 
-  /* ===== Experience ===== */
-  .timeline{border-left:1px solid var(--line-strong);padding-left:32px;position:relative;}
-  .tl-item{position:relative;padding-bottom:44px;}
-  .tl-item:last-child{padding-bottom:0;}
-  .tl-dot{
-    position:absolute;left:-37.5px;top:4px;
-    width:12px;height:12px;border-radius:50%;
-    background:var(--navy);border:2px solid var(--amber);
-  }
-  .tl-date{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);margin-bottom:8px;}
-  .tl-role{font-size:19px;font-weight:700;margin-bottom:3px;}
-  .tl-org{color:var(--muted);font-size:14px;margin-bottom:14px;}
-  .tl-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
-  .tl-list li{color:#c3cbdb;font-size:14.5px;line-height:1.5;padding-left:18px;position:relative;}
-  .tl-list li::before{content:"▸";position:absolute;left:0;color:var(--teal);}
-  .gantt{height:6px;border-radius:3px;background:var(--panel-2);margin-top:14px;overflow:hidden;max-width:280px;}
-  .gantt-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--teal));}
+@media(max-width:600px){
 
-  /* ===== Contact ===== */
+  section{
+    padding:70px 18px;
+  }
+
+  .formula-inner{
+    padding:10px 14px;
+  }
+
+  .cellnav{
+    margin-left:0;
+  }
+
+  .kpi-grid{
+    grid-template-columns:1fr;
+  }
+
   .contact-panel{
-    background:linear-gradient(135deg,var(--panel) 0%,var(--panel-2) 100%);
-    border:1px solid var(--line-strong);
-    border-radius:14px;
-    padding:56px 48px;
-    text-align:center;
-  }
-  .contact-formula{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;color:var(--teal);
-    margin-bottom:20px;
-  }
-  .contact-title{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:14px;}
-  .contact-sub{color:var(--muted);margin-bottom:32px;font-size:15px;}
-  .contact-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-
-  footer{
-    text-align:center;padding:36px 24px 48px;
-    font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);
+    padding:42px 20px;
   }
 
-  ::selection{background:var(--amber);color:#151016;}
+}
 
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important;}
+@media(prefers-reduced-motion:reduce){
+
+  html{
+    scroll-behavior:auto;
   }
+
+  *{
+    animation:none !important;
+    transition:none !important;
+  }
+
+}
 </style>
 </head>
+
 <body>
 
 <div class="formula-bar">
+
   <div class="formula-inner">
+
     <div class="fx-tag">fx</div>
-    <div class="formula-input"><span class="k">=HIRE</span>(<span class="s">"Ahmed Khalid"</span>, role: <span class="s">"Data Analyst"</span>, availability: <span class="s">"Immediate"</span>)</div>
+
+    <div class="formula-input">
+      <span class="k">=HIRE</span>(
+      <span class="s">"Ahmed Khalid"</span>,
+      role:
+      <span class="s">"Data Analyst"</span>,
+      availability:
+      <span class="s">"Remote / Worldwide"</span>)
+    </div>
+
     <div class="cellnav">
       <a href="#a1">A1 Profile</a>
       <a href="#b1">B1 Skills</a>
@@ -319,237 +652,1022 @@
       <a href="#d1">D1 Experience</a>
       <a href="#e1">E1 Contact</a>
     </div>
+
   </div>
+
 </div>
 
 <!-- HERO -->
+
 <section class="hero">
-  <div class="hero-top">
-    <div>
-      <span class="status-pill"><span class="dot"></span>OPEN TO REMOTE OPPORTUNITIES</span>
-      <h1 class="name">Ahmed Khalid</h1>
-      <div class="role-line mono">Data Analyst<span class="blink">.</span></div>
-    </div>
+
+  <span class="status-pill">
+    <span class="dot"></span>
+    OPEN TO REMOTE & WORLDWIDE OPPORTUNITIES
+  </span>
+
+  <h1 class="name">Ahmed Khalid</h1>
+
+  <div class="role-line mono">
+    Data Analyst<span class="blink">.</span>
   </div>
-  <p class="pitch">I turn raw business data into decisions — <b>SQL, Python, and Power BI</b>, applied to a real US e-commerce business I run myself, not just coursework.</p>
+
+  <p class="pitch">
+    Data Analyst with <b>2+ years of experience</b> using SQL, Python,
+    Power BI, and Excel to turn business and e-commerce data into
+    actionable insights. I build reliable analytics workflows — from
+    data cleaning and validation to dashboards, KPI reporting, and
+    business recommendations.
+  </p>
+
   <div class="hero-ctas">
-    <a class="btn btn-primary" href="#c1">View Projects →</a>
-    <a class="btn btn-ghost" href="Ahmed_Khalid_Resume.pdf" download>↓ Download Resume</a>
-    <a class="btn btn-ghost" href="https://github.com/ahmedkhalidse8" target="_blank">GitHub ↗</a>
+
+    <a class="btn btn-primary" href="#c1">
+      View Projects →
+    </a>
+
+    <a class="btn btn-ghost"
+       href="Ahmed_Khalid_Resume.pdf"
+       download>
+      ↓ Download Resume
+    </a>
+
+    <a class="btn btn-ghost"
+       href="https://github.com/ahmedkhalidse8"
+       target="_blank">
+      GitHub ↗
+    </a>
+
   </div>
 
   <div class="kpi-grid">
+
     <div class="kpi">
-      <div class="kpi-flag">▲ 94%</div>
-      <div class="kpi-label">Ad Spend Diagnosed</div>
-      <div class="kpi-value">94<span class="unit">% ACOS</span></div>
-      <div class="kpi-sub">Underperforming PPC campaign identified</div>
+
+      <div class="kpi-flag">▲ PPC DIAGNOSIS</div>
+
+      <div class="kpi-label">
+        Advertising Issue Investigated
+      </div>
+
+      <div class="kpi-value">
+        94<span class="unit">% ACOS</span>
+      </div>
+
+      <div class="kpi-sub">
+        Traced to non-converting search terms
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-label">Records Analyzed</div>
-      <div class="kpi-value">50K<span class="unit">+</span></div>
-      <div class="kpi-sub">Amazon Seller Central dataset</div>
+
+      <div class="kpi-label">
+        E-commerce Records
+      </div>
+
+      <div class="kpi-value">
+        50K<span class="unit">+</span>
+      </div>
+
+      <div class="kpi-sub">
+        Sales, advertising, and customer data
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-label">Sales Dashboarded</div>
-      <div class="kpi-value">$12.64M</div>
-      <div class="kpi-sub">Global Superstore analysis</div>
+
+      <div class="kpi-label">
+        Restaurant Sales Analyzed
+      </div>
+
+      <div class="kpi-value">
+        Rs. 4.77M
+      </div>
+
+      <div class="kpi-sub">
+        381 days of validated records
+      </div>
+
     </div>
+
     <div class="kpi">
-      <div class="kpi-label">Projects Shipped</div>
-      <div class="kpi-value">06</div>
-      <div class="kpi-sub mono">SQL · Python · Power BI</div>
+
+      <div class="kpi-label">
+        Analytics Projects
+      </div>
+
+      <div class="kpi-value">
+        07
+      </div>
+
+      <div class="kpi-sub mono">
+        SQL · Python · Power BI · Excel
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- A1 PROFILE -->
+<!-- PROFILE -->
+
 <section id="a1">
-  <div class="eyebrow"><span class="cellref">A1</span> PROFILE</div>
-  <h2 class="sec-title">Founder-operator, not just an analyst.</h2>
-  <p class="sec-desc">Two years of ownership, not observation — every insight below came from a business where the outcome was mine to own.</p>
+
+  <div class="eyebrow">
+    <span class="cellref">A1</span>
+    PROFILE
+  </div>
+
+  <h2 class="sec-title">
+    From data to decisions.
+  </h2>
 
   <div class="profile-grid">
+
     <div class="profile-text">
-      <p>I founded and operate <b style="color:var(--text)">JDV Enterprises (Luxmiel)</b>, a US-registered Amazon e-commerce brand, where I own end-to-end data analysis — advertising performance, sales trends, customer behavior, and inventory decisions.</p>
-      <p>Analyzing over 50,000 records from Amazon Seller Central, I diagnosed a <b style="color:var(--text)">94% ACOS</b> on underperforming PPC campaigns and turned that finding into a concrete bid and keyword strategy — the kind of insight-to-action work I want to bring to a team, not just a solo business.</p>
-      <p>Outside of that, I've built five additional analytics projects spanning customer segmentation, marketing performance, and SQL-based business analysis — all documented and reproducible on GitHub.</p>
+
+      <p>
+        I work across the complete analytics workflow:
+        extracting and cleaning data, validating calculations,
+        analyzing performance, building dashboards, and translating
+        findings into business recommendations.
+      </p>
+
+      <p>
+        My experience combines real e-commerce analytics with
+        restaurant operations. For a US-based Amazon brand, I analyze
+        advertising, sales, inventory, and customer performance. I
+        investigate what drives a KPI instead of only reporting the
+        number — including tracing a 94% ACOS issue to specific
+        non-converting search terms.
+      </p>
+
+      <p>
+        I also built a restaurant analytics system from operational
+        records and expanded it into an end-to-end Python and Excel
+        project. The workflow audited source files, cleaned and
+        validated 381 daily records, investigated data-quality issues,
+        generated business insights, and produced an interactive Excel
+        dashboard.
+      </p>
+
     </div>
+
     <div class="info-card">
-      <div class="info-row"><div class="info-k">Location</div><div class="info-v">Rawalpindi, Pakistan (Remote)</div></div>
-      <div class="info-row"><div class="info-k">Education</div><div class="info-v">BS, Information Technology</div></div>
-      <div class="info-row"><div class="info-k">Core Tools</div><div class="info-v">SQL · Python · Power BI</div></div>
-      <div class="info-row"><div class="info-k">Experience</div><div class="info-v">~2.5 yrs, hands-on</div></div>
-      <div class="info-row"><div class="info-k">Open To</div><div class="info-v">Remote / Full-time / Contract</div></div>
+
+      <div class="info-row">
+
+        <div class="info-k">
+          Location
+        </div>
+
+        <div class="info-v">
+          Rawalpindi, Pakistan
+        </div>
+
+      </div>
+
+      <div class="info-row">
+
+        <div class="info-k">
+          Availability
+        </div>
+
+        <div class="info-v">
+          Remote / Worldwide
+        </div>
+
+      </div>
+
+      <div class="info-row">
+
+        <div class="info-k">
+          Focus
+        </div>
+
+        <div class="info-v">
+          Data & Business Analytics
+        </div>
+
+      </div>
+
+      <div class="info-row">
+
+        <div class="info-k">
+          Education
+        </div>
+
+        <div class="info-v">
+          BS Information Technology
+        </div>
+
+      </div>
+
+      <div class="info-row">
+
+        <div class="info-k">
+          Languages
+        </div>
+
+        <div class="info-v">
+          English · Urdu
+        </div>
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- B1 SKILLS -->
+<!-- SKILLS -->
+
 <section id="b1">
-  <div class="eyebrow"><span class="cellref">B1</span> SKILLS</div>
-  <h2 class="sec-title">The toolkit, ranked honestly.</h2>
-  <p class="sec-desc">Proficiency bars reflect real usage across the projects in C1 — not a self-rating scale.</p>
+
+  <div class="eyebrow">
+    <span class="cellref">B1</span>
+    CORE SKILLS
+  </div>
+
+  <h2 class="sec-title">
+    Analytics toolkit.
+  </h2>
 
   <div class="query-comment">
-    <span class="kw">SELECT</span> tool, proficiency, used_in <span class="kw">FROM</span> skillset <span class="kw">ORDER BY</span> proficiency <span class="kw">DESC</span>;
+
+    <span class="kw">SELECT</span>
+    business_problem,
+    clean_data,
+    useful_insight
+
+    <span class="kw">FROM</span>
+    analytics_workflow;
+
   </div>
 
-  <table class="skills">
-    <thead>
-      <tr><th style="width:22%">Tool</th><th style="width:38%">Proficiency</th><th>Applied In</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="tool-name">SQL</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">Joins / CTEs</span><span class="tag">Window Fns</span><span class="tag">CASE</span></div></td>
-      </tr>
-      <tr>
-        <td><span class="tool-name">Power BI</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">DAX</span><span class="tag">Power Query</span></div></td>
-      </tr>
-      <tr>
-        <td><span class="tool-name">Python</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span></div></td>
-      </tr>
-      <tr>
-        <td><span class="tool-name">Excel</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">Pivot Tables</span><span class="tag">XLOOKUP</span></div></td>
-      </tr>
-      <tr>
-        <td><span class="tool-name">Tableau</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">Familiarity</span></div></td>
-      </tr>
-      <tr>
-        <td><span class="tool-name">PostgreSQL</span></td>
-        <td><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></td>
-        <td><div class="tag-row"><span class="tag">Business Analysis</span></div></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        SQL & Databases
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">PostgreSQL</span>
+
+        <span class="tag">Joins</span>
+
+        <span class="tag">CTEs</span>
+
+        <span class="tag">Window Functions</span>
+
+        <span class="tag">Subqueries</span>
+
+        <span class="tag">CASE</span>
+
+        <span class="tag">Aggregations</span>
+
+      </div>
+
+    </div>
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        Python Analytics
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Pandas</span>
+
+        <span class="tag">NumPy</span>
+
+        <span class="tag">Matplotlib</span>
+
+        <span class="tag">Scikit-learn</span>
+
+        <span class="tag">Jupyter</span>
+
+      </div>
+
+    </div>
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        BI & Visualization
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Power BI</span>
+
+        <span class="tag">DAX</span>
+
+        <span class="tag">Power Query</span>
+
+        <span class="tag">Tableau</span>
+
+        <span class="tag">Dashboard Design</span>
+
+        <span class="tag">KPI Reporting</span>
+
+      </div>
+
+    </div>
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        Excel & Business Analytics
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Pivot Tables</span>
+
+        <span class="tag">XLOOKUP</span>
+
+        <span class="tag">VLOOKUP</span>
+
+        <span class="tag">SUMIFS</span>
+
+        <span class="tag">Dashboards</span>
+
+        <span class="tag">Data Validation</span>
+
+      </div>
+
+    </div>
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        Analytics Competencies
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Data Cleaning</span>
+
+        <span class="tag">EDA</span>
+
+        <span class="tag">Statistical Analysis</span>
+
+        <span class="tag">A/B Testing</span>
+
+        <span class="tag">Data Quality</span>
+
+        <span class="tag">Data Storytelling</span>
+
+      </div>
+
+    </div>
+
+    <div class="skill-card">
+
+      <div class="skill-title">
+        Other Tools
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Git</span>
+
+        <span class="tag">GitHub</span>
+
+        <span class="tag">Snowflake</span>
+
+        <span class="tag">Star Schema</span>
+
+        <span class="tag">Google Sheets</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<!-- C1 PROJECTS -->
+<!-- PROJECTS -->
+
 <section id="c1">
-  <div class="eyebrow"><span class="cellref">C1</span> PROJECTS</div>
-  <h2 class="sec-title">Six shipped, all reproducible.</h2>
-  <p class="sec-desc">Every project below is fully documented on GitHub — data, notebook, dashboard, and a written case study.</p>
+
+  <div class="eyebrow">
+
+    <span class="cellref">C1</span>
+
+    ANALYTICS PROJECTS
+
+  </div>
+
+  <h2 class="sec-title">
+
+    Built to answer business questions.
+
+  </h2>
 
   <div class="project-grid">
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">Amazon PPC Performance Analysis</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/amazon-ppc-analysis" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          Restaurant Business Performance Analytics
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/Taj-Bites-Analytics"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
       </div>
-      <div class="proj-flag">▲ Flagged 94% ACOS issue</div>
-      <div class="proj-desc">3-view Power BI dashboard tracking ACOS, ROAS, CTR, and CPC across campaign and keyword-level data.</div>
-      <div class="proj-tags"><span class="tag">Python</span><span class="tag">Power BI</span><span class="tag">Pandas</span></div>
+
+      <div class="proj-flag">
+
+        ▲ 381 validated daily records
+
+      </div>
+
+      <div class="proj-desc">
+
+        Built an end-to-end analytics workflow using Python,
+        Pandas, and Excel. Audited source workbooks, removed
+        duplicate dates, validated financial calculations,
+        investigated unreliable category-profit data, generated
+        business insights, and built an Excel dashboard.
+        Analyzed Rs. 4.77M in sales with a 78.74% profitable-day rate.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Pandas</span>
+
+        <span class="tag">Excel</span>
+
+        <span class="tag">EDA</span>
+
+        <span class="tag">Data Validation</span>
+
+      </div>
+
     </div>
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">Sales Performance Dashboard</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/sales-analytics-dashboard" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          Amazon PPC Performance Analysis
+        </div>
+
       </div>
-      <div class="proj-flag">▲ $12.64M in sales tracked</div>
-      <div class="proj-desc">End-to-end dashboard over 50,000+ orders — revenue, profit, category and regional performance.</div>
-      <div class="proj-tags"><span class="tag">Power BI</span><span class="tag">SQL</span></div>
+
+      <div class="proj-flag">
+
+        ▲ 94% ACOS investigation
+
+      </div>
+
+      <div class="proj-desc">
+
+        Cleaned and analyzed campaign, keyword, and search-term
+        performance. Built a three-view Power BI dashboard tracking
+        ACOS, ROAS, CTR, CPC, and conversion performance. Identified
+        non-converting search terms and proposed bid and
+        negative-keyword actions.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Power BI</span>
+
+        <span class="tag">PPC Analytics</span>
+
+        <span class="tag">DAX</span>
+
+      </div>
+
     </div>
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">E-commerce Funnel & Customer Analysis</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/ecommerce-funnel-analysis" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          Sales Performance Dashboard
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/sales-analytics-dashboard"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
       </div>
-      <div class="proj-flag">▲ $681M revenue segmented</div>
-      <div class="proj-desc">Customer value tiers and conversion-funnel dashboard identifying drop-off points and retention opportunities.</div>
-      <div class="proj-tags"><span class="tag">Python</span><span class="tag">Power BI</span></div>
+
+      <div class="proj-flag">
+
+        ▲ $12.64M in analyzed sales
+
+      </div>
+
+      <div class="proj-desc">
+
+        Built an end-to-end Power BI dashboard using the Global
+        Superstore dataset. Analyzed 50,000+ orders across revenue,
+        profit, product categories, and regional performance.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Power BI</span>
+
+        <span class="tag">DAX</span>
+
+        <span class="tag">Power Query</span>
+
+        <span class="tag">Data Modeling</span>
+
+      </div>
+
     </div>
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">Customer Segmentation Analysis</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/customer-segmentation-analysis" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          E-commerce Funnel & Customer Analysis
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/ecommerce-funnel-analysis"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
       </div>
-      <div class="proj-flag">▲ K-Means clustering</div>
-      <div class="proj-desc">Behavioral customer segments identified via elbow-method-validated clustering, translated into targeting recommendations.</div>
-      <div class="proj-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span></div>
+
+      <div class="proj-flag">
+
+        ▲ Customer value segmentation
+
+      </div>
+
+      <div class="proj-desc">
+
+        Analyzed approximately 50,000 customers and $681M in
+        revenue. Segmented customers into high-, medium-, and
+        low-value groups and built a Power BI dashboard to identify
+        revenue drivers and retention opportunities.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Power BI</span>
+
+        <span class="tag">Customer Analytics</span>
+
+      </div>
+
     </div>
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">Marketing Campaign Performance</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/marketing-campaign-analysis" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          Customer Segmentation Analysis
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/customer-segmentation-analysis"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
       </div>
-      <div class="proj-flag">▲ ROI & conversion analysis</div>
-      <div class="proj-desc">Evaluated conversion rate and ROI across customer income, channel, and product category.</div>
-      <div class="proj-tags"><span class="tag">Python</span><span class="tag">Matplotlib</span></div>
+
+      <div class="proj-flag">
+
+        ▲ K-Means clustering
+
+      </div>
+
+      <div class="proj-desc">
+
+        Applied K-Means clustering and the elbow method to identify
+        customer groups based on income and spending behavior.
+        Translated the resulting segments into targeting and
+        marketing recommendations.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Scikit-learn</span>
+
+        <span class="tag">K-Means</span>
+
+        <span class="tag">Matplotlib</span>
+
+      </div>
+
     </div>
 
     <div class="proj-card">
+
       <div class="proj-top">
-        <div class="proj-name">SQL Business Analysis</div>
-        <a class="proj-link" href="https://github.com/ahmedkhalidse8/sql-business-analysis" target="_blank">GitHub ↗</a>
+
+        <div class="proj-name">
+          SQL Business Analysis
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/sql-business-analysis"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
       </div>
-      <div class="proj-flag">▲ Chinook database</div>
-      <div class="proj-desc">Complex queries — joins, CTEs, CASE statements — extracting revenue and customer-behavior insight.</div>
-      <div class="proj-tags"><span class="tag">PostgreSQL</span><span class="tag">SQL</span></div>
+
+      <div class="proj-flag">
+
+        ▲ Chinook business database
+
+      </div>
+
+      <div class="proj-desc">
+
+        Wrote SQL queries using joins, aggregations, subqueries,
+        CTEs, CASE statements, and window functions to analyze
+        revenue, customers, sales trends, and top-performing markets.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">SQL</span>
+
+        <span class="tag">PostgreSQL</span>
+
+        <span class="tag">CTEs</span>
+
+        <span class="tag">Window Functions</span>
+
+      </div>
+
+    </div>
+
+    <div class="proj-card">
+
+      <div class="proj-top">
+
+        <div class="proj-name">
+          Marketing Campaign Performance
+        </div>
+
+        <a class="proj-link"
+           href="https://github.com/ahmedkhalidse8/marketing-campaign-analysis"
+           target="_blank">
+
+          GitHub ↗
+
+        </a>
+
+      </div>
+
+      <div class="proj-flag">
+
+        ▲ ROI & conversion analysis
+
+      </div>
+
+      <div class="proj-desc">
+
+        Evaluated marketing campaign performance across customer
+        income, acquisition channel, and product category. Analyzed
+        conversion rates and ROI to identify opportunities for
+        campaign optimization.
+
+      </div>
+
+      <div class="tag-row">
+
+        <span class="tag">Python</span>
+
+        <span class="tag">Pandas</span>
+
+        <span class="tag">Matplotlib</span>
+
+        <span class="tag">Marketing Analytics</span>
+
+      </div>
+
     </div>
 
   </div>
+
 </section>
 
-<!-- D1 EXPERIENCE -->
+<!-- EXPERIENCE -->
+
 <section id="d1">
-  <div class="eyebrow"><span class="cellref">D1</span> EXPERIENCE</div>
-  <h2 class="sec-title">Timeline.</h2>
+
+  <div class="eyebrow">
+
+    <span class="cellref">D1</span>
+
+    EXPERIENCE
+
+  </div>
+
+  <h2 class="sec-title">
+
+    Applied analytics experience.
+
+  </h2>
 
   <div class="timeline">
+
     <div class="tl-item">
+
       <div class="tl-dot"></div>
-      <div class="tl-date">2024 — PRESENT</div>
-      <div class="tl-role">Founder & Data Analyst</div>
-      <div class="tl-org">JDV Enterprises LLC (Luxmiel) — US E-commerce Brand · Remote</div>
+
+      <div class="tl-date">
+
+        2024 — PRESENT
+
+      </div>
+
+      <div class="tl-role">
+
+        Data Analyst & Operator
+
+      </div>
+
+      <div class="tl-org">
+
+        JDV Enterprises LLC (Luxmiel)
+        · US-based Amazon E-commerce Brand
+        · Remote
+
+      </div>
+
       <ul class="tl-list">
-        <li>Own end-to-end data analysis for a US-based e-commerce brand — advertising, sales, and inventory.</li>
-        <li>Diagnosed 94% ACOS on underperforming campaigns; built and drove the fix.</li>
-        <li>Built recurring Power BI & Excel reporting for sales, ads, and inventory performance.</li>
+
+        <li>
+
+          Own end-to-end analytics for a US-based Amazon brand,
+          analyzing 50,000+ records across advertising, sales,
+          customer, and inventory performance.
+
+        </li>
+
+        <li>
+
+          Diagnosed a 94% ACOS issue down to specific
+          non-converting search terms and recommended bid and
+          negative-keyword changes to reduce wasted spend.
+
+        </li>
+
+        <li>
+
+          Built recurring Power BI and Excel dashboards for sales,
+          advertising performance, KPI monitoring, and inventory
+          decisions.
+
+        </li>
+
+        <li>
+
+          Clean and validate multi-source datasets before publishing
+          recurring reports and communicate findings directly to
+          support pricing, budget, and inventory decisions.
+
+        </li>
+
       </ul>
-      <div class="gantt"><div class="gantt-fill" style="width:100%"></div></div>
+
     </div>
 
     <div class="tl-item">
-      <div class="tl-dot" style="border-color:var(--teal)"></div>
-      <div class="tl-date">2020 — 2024</div>
-      <div class="tl-role">BS, Information Technology</div>
-      <div class="tl-org">University of Gujrat · CGPA 3.07 / 4.0</div>
-      <div class="gantt"><div class="gantt-fill" style="width:70%"></div></div>
+
+      <div class="tl-dot"
+           style="border-color:var(--teal)">
+
+      </div>
+
+      <div class="tl-date">
+
+        2021 — 2024
+
+      </div>
+
+      <div class="tl-role">
+
+        Operations Manager
+
+      </div>
+
+      <div class="tl-org">
+
+        Taj Bites & Beyond
+        · Independent Restaurant
+        · Rawalpindi, Pakistan
+
+      </div>
+
+      <ul class="tl-list">
+
+        <li>
+
+          Managed daily restaurant operations, staff, vendors, and
+          operational reporting while completing a BS in IT.
+
+        </li>
+
+        <li>
+
+          Built a custom Excel cost and inventory system from
+          scratch in an environment without a conventional POS
+          system.
+
+        </li>
+
+        <li>
+
+          Developed practical methods for tracking difficult items,
+          including estimating loose-scoop fries sales through
+          nightly cash reconciliation.
+
+        </li>
+
+        <li>
+
+          Built the operational records that later became an
+          end-to-end analytics project covering 381 days,
+          Rs. 4.77M in sales, a 24.53% gross margin, and a
+          12.63% net margin.
+
+        </li>
+
+        <li>
+
+          Identified August 2023 as the strongest month and Friday
+          as the top-performing weekday.
+
+        </li>
+
+      </ul>
+
     </div>
+
+    <div class="tl-item">
+
+      <div class="tl-dot"
+           style="border-color:var(--teal)">
+
+      </div>
+
+      <div class="tl-date">
+
+        2020 — 2024
+
+      </div>
+
+      <div class="tl-role">
+
+        BS, Information Technology
+
+      </div>
+
+      <div class="tl-org">
+
+        University of Gujrat
+        · CGPA 3.07 / 4.0
+
+      </div>
+
+    </div>
+
   </div>
+
 </section>
 
-<!-- E1 CONTACT -->
+<!-- CONTACT -->
+
 <section id="e1">
-  <div class="eyebrow"><span class="cellref">E1</span> CONTACT</div>
-  <div class="contact-panel">
-    <div class="contact-formula">=CONTACT(<span style="color:var(--amber)">"ahmedkhalidse8@gmail.com"</span>, <span style="color:var(--amber)">"+92 335 3592512"</span>)</div>
-    <div class="contact-title">Let's talk data.</div>
-    <div class="contact-sub">Open to remote, full-time, or contract Data Analyst roles.</div>
-    <div class="contact-btns">
-      <a class="btn btn-primary" href="mailto:ahmedkhalidse8@gmail.com">Email Me</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/ahmadkhalidse8" target="_blank">LinkedIn ↗</a>
-      <a class="btn btn-ghost" href="https://github.com/ahmedkhalidse8" target="_blank">GitHub ↗</a>
-    </div>
+
+  <div class="eyebrow">
+
+    <span class="cellref">E1</span>
+
+    CONTACT
+
   </div>
+
+  <div class="contact-panel">
+
+    <div class="contact-formula">
+
+      =CONTACT(
+
+      <span style="color:var(--amber)">
+        "ahmedkhalidse8@gmail.com"
+      </span>
+
+      )
+
+    </div>
+
+    <div class="contact-title">
+
+      Let's talk data.
+
+    </div>
+
+    <div class="contact-sub">
+
+      Open to remote, full-time, and contract
+      Data Analyst opportunities worldwide.
+
+    </div>
+
+    <div class="contact-btns">
+
+      <a class="btn btn-primary"
+         href="mailto:ahmedkhalidse8@gmail.com">
+
+        Email Me
+
+      </a>
+
+      <a class="btn btn-ghost"
+         href="https://www.linkedin.com/in/ahmadkhalidse8/"
+         target="_blank">
+
+        LinkedIn ↗
+
+      </a>
+
+      <a class="btn btn-ghost"
+         href="https://github.com/ahmedkhalidse8"
+         target="_blank">
+
+        GitHub ↗
+
+      </a>
+
+    </div>
+
+  </div>
+
 </section>
 
-<footer>Ahmed Khalid — Data Analyst · Built with intent, not a template.</footer>
+<footer>
+
+  Ahmed Khalid — Data Analyst
+  · SQL · Python · Power BI · Excel
+
+</footer>
 
 </body>
 </html>
+```
